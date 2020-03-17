@@ -2,6 +2,7 @@
 
 const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 module.exports = {
     entry: './src/index.js',
     output: {
@@ -9,6 +10,8 @@ module.exports = {
         path: path.resolve(__dirname,'dist')//打包出来的文件目录地址,需要是绝对路径,__dirname是项目所在的目录
     },
     plugins: [
+        //清空输出目录
+        new CleanWebpackPlugin(),
         //每次打包后的js要插入到html当中
         //作用:根据模板的html生成新的html,并把打包后的js 引入到html里面
         new HtmlWebPackPlugin({
@@ -17,4 +20,3 @@ module.exports = {
         }),
     ]
 }
-
