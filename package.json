@@ -1,0 +1,12 @@
+{
+  "name": "webpack-basic-configuration-learning",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mtt3366/webpack-basic-configuration-learning.git",
+  "author": "mataotao <mttwind@foxmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
