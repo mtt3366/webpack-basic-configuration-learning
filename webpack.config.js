@@ -9,6 +9,12 @@ module.exports = {
         filename: "bundle.js",
         path: path.resolve(__dirname,'dist')//打包出来的文件目录地址,需要是绝对路径,__dirname是项目所在的目录
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'static'),
+        compress: true,//一切服务都启用 gzip 压缩：
+        port: 7777,
+        open:true//告诉 dev-server 在 server 启动后打开浏览器。默认禁用。
+    },
     plugins: [
         //清空输出目录
         new CleanWebpackPlugin(),
