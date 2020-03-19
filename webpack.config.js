@@ -39,7 +39,9 @@ module.exports = {
         contentBase: path.join(__dirname, 'static'),
         compress: true,//一切服务都启用 gzip 压缩：
         port: 7777,
-        open: true//告诉 dev-server 在 server 启动后打开浏览器。默认禁用。
+        open: true,//告诉 dev-server 在 server 启动后打开浏览器。默认禁用。
+        hot:true
+
     },
     //=>配置模块加载器LOADER
     module: {

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
-    "dev:server": "webpack-dev-server "
+    "dev:server": "webpack-dev-server --mode development"
   },
   "repository": "git@github.com:mtt3366/webpack-basic-configuration-learning.git",
   "author": "mataotao <mttwind@foxmail.com>",
