@@ -3,6 +3,7 @@
 const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const htmlPlugin = ['index', 'other'].map(chunksName => {
     return new HtmlWebPackPlugin({
         template: path.resolve(__dirname, `${chunksName}.html`),
@@ -47,7 +48,12 @@ module.exports = {
             // }
             {//简写
                 test:/\.css$/,
-                use:['style-loader',{
+                use:[
+                    // 'style-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    {
                     loader: 'css-loader',
                     options: {
                         importLoaders:2//用后面的一个加载器来解析
@@ -61,6 +67,9 @@ module.exports = {
         ]
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename:'css/main.css'
+        }),
         //清空输出目录
         new CleanWebpackPlugin(),
         //每次打包后的js要插入到html当中
