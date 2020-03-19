@@ -4,6 +4,8 @@ const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserJSPlugin = require('terser-webpack-plugin')
 const htmlPlugin = ['index', 'other'].map(chunksName => {
     return new HtmlWebPackPlugin({
         template: path.resolve(__dirname, `${chunksName}.html`),
@@ -12,6 +14,12 @@ const htmlPlugin = ['index', 'other'].map(chunksName => {
     })
 })
 module.exports = {
+    optimization: {
+        minimizer: [//压缩css,js
+            new OptimizeCssAssetsWebpackPlugin(),//一旦设置optimization,js就不会自动压缩了,需要借助插件来压缩js,(生产环境下)
+            new TerserJSPlugin()
+        ],
+    },
     //单入口,单出口打包
     // entry: './src/index.js',
     // output: {
