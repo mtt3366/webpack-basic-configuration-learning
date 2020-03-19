@@ -47,7 +47,12 @@ module.exports = {
             // }
             {//简写
                 test:/\.css$/,
-                use:['style-loader','css-loader'],
+                use:['style-loader',{
+                    loader: 'css-loader',
+                    options: {
+                        importLoaders:2//用后面的一个加载器来解析
+                    }
+                },'postcss-loader','less-loader'],
             },
             {//简写
                 test:/\.less$/,
