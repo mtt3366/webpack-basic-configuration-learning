@@ -7,6 +7,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const AddAssetHtmlCdnWebpackPlugin = require('add-asset-html-cdn-webpack-plugin')
+
+const webpack = require('webpack')
 const htmlPlugin = ['index', 'other'].map(chunksName => {
     return new HtmlWebPackPlugin({
         template: path.resolve(__dirname, `${chunksName}.html`),
@@ -15,10 +17,10 @@ const htmlPlugin = ['index', 'other'].map(chunksName => {
     })
 })
 module.exports = {
-    //告诉webpack,$是外部变量,不需要打包
-    externals:{
-      'jquery':'$'//$外部变量,不需要打包
-    },
+    // //告诉webpack,$是外部变量,不需要打包
+    // externals:{
+    //   'jquery':'$'//$外部变量,不需要打包
+    // },
     optimization: {
         minimizer: [//压缩css,js
             new OptimizeCssAssetsWebpackPlugin(),//一旦设置optimization,js就不会自动压缩了,需要借助插件来压缩js,(生产环境下)
@@ -134,6 +136,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            $$: 'jquery',//$符号来自于jquery模块,每个模块都注入变量$,但不是注入在全局下
+            jQuery: 'jquery',
+            _map:['lodash','map']
+        }),
         new MiniCssExtractPlugin({
             filename:'css/main.css'
         }),
@@ -142,8 +149,8 @@ module.exports = {
         //每次打包后的js要插入到html当中
         //作用:根据模板的html生成新的html,并把打包后的js 引入到html里面
         ...htmlPlugin,
-        new AddAssetHtmlCdnWebpackPlugin(true,{
-            jQuery:'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'
-        })
+        // new AddAssetHtmlCdnWebpackPlugin(true,{
+        //     jQuery:'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'
+        // })
     ]
 }

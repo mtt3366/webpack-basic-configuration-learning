@@ -46,5 +46,10 @@
 
 import sum from   './sum.js'
 
-import $ from 'jquery'
-console.log($('#xxx'))
+
+//不引入,直接使用,
+console.log($$)
+let arr = _map([1,2,3],function (item) {
+    return item*item
+})
+console.log(arr)

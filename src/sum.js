@@ -28,6 +28,6 @@ const sum = (a, b)=>{
     return a+b
 }
 
-console.log($,jQuery)
+console.log($$)
 // export {sum}//引入模块只能叫sum
 export default sum;//默认导出,引入的时候可以给模块起名
