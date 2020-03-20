@@ -76,7 +76,11 @@ module.exports = {
             //     use:'style-loader',
             //     enforce: "post",//pre  优先加载, post  最后加载
             // }
-
+            {
+              test:/\.js$/,
+                use:'eslint-loader',
+                enforce: "pre"//最先解析
+            },
             {
                 test:require.resolve('jquery'),
                 use:{
