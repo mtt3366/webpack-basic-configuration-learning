@@ -46,10 +46,6 @@
 
 import sum from   './sum.js'
 
-
-//不引入,直接使用,
-console.log($$)
-let arr = _map([1,2,3],function (item) {
-    return item*item
-})
-console.log(arr)
+import $ from 'jquery'
+//使用expose-loader,虽然暴露在全局,但是也要引用一下
+console.log($,'----',window.$)

@@ -76,6 +76,14 @@ module.exports = {
             //     use:'style-loader',
             //     enforce: "post",//pre  优先加载, post  最后加载
             // }
+
+            {
+                test:require.resolve('jquery'),
+                use:{
+                    loader: "expose-loader",
+                    options:'$'
+                }
+            },
             {//简写
                 test:/\.css$/,
                 use:[
