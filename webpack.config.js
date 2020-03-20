@@ -74,16 +74,29 @@ module.exports = {
                 test:/\.less$/,
                 use:['style-loader','css-loader','less-loader'],
             },
+            // {
+            //     test:/\.(jpg|png|jpeg|gif)$/,
+            //     use:[
+            //         {
+            //             loader: 'file-loader',
+            //             options: {
+            //                 name:'img/[name].[ext]'
+            //             }
+            //         }
+            //         ]
+            // }
             {
                 test:/\.(jpg|png|jpeg|gif)$/,
                 use:[
                     {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
-                            name:'img/[name].[ext]'
+                           limit:100*1024,//如果小于100KB,就用url-loader转化为base64直接放在html里输出,如果大于100kb,就用file-loader转化为文件输出
+                            outputPath:'img',//如果大于限制,放在这个文件夹里
+                            publicPath:'http://www.mtt.com'//如果大于限制,就从远程服务器上获取(比如CDN)
                         }
                     }
-                    ]
+                ]
             }
         ]
     },
