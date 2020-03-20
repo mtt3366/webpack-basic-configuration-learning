@@ -12,3 +12,4 @@ document.body.appendChild(oImg)
 let i = document.createElement('i')
 i.className = 'iconfont icon-iconfont-edu12'
 document.body.appendChild(i)
+console.log('zhufeng'.includes('g'))

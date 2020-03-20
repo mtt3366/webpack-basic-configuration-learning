@@ -1,7 +1,7 @@
 //esModule es6模块化方法  import  export
 //commonJS node模块化方法 require module.exports
 
-function sum(a, b) {
+const sum = (a, b)=>{
     return a+b
 }
 // export {sum}//引入模块只能叫sum

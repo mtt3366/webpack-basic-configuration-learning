@@ -106,6 +106,12 @@ module.exports = {
                         options: {name:'icon/[name].[ext]'}
                     }
                 ]
+            },
+            {
+                test:/\.js$/,
+                use: 'babel-loader',
+                include: path.resolve(__dirname,'src'),//只要转化src文件夹下的js文件
+                exclude: /node_modules///不转化nodemodules文件夹下的代码
             }
         ]
     },

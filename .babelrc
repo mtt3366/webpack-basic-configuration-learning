@@ -1,0 +1,9 @@
+{
+  "presets": [
+    ["@babel/preset-env",{
+      "useBuiltIns": "usage",//按需引入,之转化使用的api
+      "corejs": 3
+    }]
+  ],
+  "plugins": []
+}
