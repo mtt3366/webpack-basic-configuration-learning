@@ -73,6 +73,17 @@ module.exports = {
             {//简写
                 test:/\.less$/,
                 use:['style-loader','css-loader','less-loader'],
+            },
+            {
+                test:/\.(jpg|png|jpeg|gif)$/,
+                use:[
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name:'img/[name].[ext]'
+                        }
+                    }
+                    ]
             }
         ]
     },
