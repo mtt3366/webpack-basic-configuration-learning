@@ -6,6 +6,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
+const AddAssetHtmlCdnWebpackPlugin = require('add-asset-html-cdn-webpack-plugin')
 const htmlPlugin = ['index', 'other'].map(chunksName => {
     return new HtmlWebPackPlugin({
         template: path.resolve(__dirname, `${chunksName}.html`),
@@ -14,6 +15,10 @@ const htmlPlugin = ['index', 'other'].map(chunksName => {
     })
 })
 module.exports = {
+    //告诉webpack,$是外部变量,不需要打包
+    externals:{
+      'jquery':'$'//$外部变量,不需要打包
+    },
     optimization: {
         minimizer: [//压缩css,js
             new OptimizeCssAssetsWebpackPlugin(),//一旦设置optimization,js就不会自动压缩了,需要借助插件来压缩js,(生产环境下)
@@ -39,7 +44,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'static'),
         compress: true,//一切服务都启用 gzip 压缩：
         port: 7777,
-        open: true,//告诉 dev-server 在 server 启动后打开浏览器。默认禁用。
+        // open: true,//告诉 dev-server 在 server 启动后打开浏览器。默认禁用。
         hot:true,
         before: function(app, server, compiler) {//直接启动一个端口号为777的服务
             app.get('/api/user', function(req, res) {
@@ -136,6 +141,9 @@ module.exports = {
         new CleanWebpackPlugin(),
         //每次打包后的js要插入到html当中
         //作用:根据模板的html生成新的html,并把打包后的js 引入到html里面
-        ...htmlPlugin
+        ...htmlPlugin,
+        new AddAssetHtmlCdnWebpackPlugin(true,{
+            jQuery:'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'
+        })
     ]
 }

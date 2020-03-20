@@ -1004,6 +1004,13 @@ acorn@^6.2.1:
   resolved "https://registry.npm.taobao.org/acorn/download/acorn-6.4.1.tgz?cache=0&sync_timestamp=1583823913618&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Facorn%2Fdownload%2Facorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
   integrity sha1-Ux5Yuj9RudrLmmZGyk3r9bFMpHQ=
 
+add-asset-html-cdn-webpack-plugin@^1.0.0:
+  version "1.0.0"
+  resolved "http://192.168.11.199:9874/add-asset-html-cdn-webpack-plugin/-/add-asset-html-cdn-webpack-plugin-1.0.0.tgz#3ca48a14235bfeac41e90653232e2b6437d83857"
+  integrity sha1-PKSKFCNb/qxB6QZTIy4rZDfYOFc=
+  dependencies:
+    html-webpack-plugin "^3.2.0"
+
 aggregate-error@^3.0.0:
   version "3.0.1"
   resolved "http://192.168.11.199:9874/aggregate-error/-/aggregate-error-3.0.1.tgz#db2fe7246e536f40d9b5442a39e117d7dd6a24e0"
@@ -3671,6 +3678,11 @@ jest-worker@^25.1.0:
   dependencies:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
+
+jquery@^3.4.1:
+  version "3.4.1"
+  resolved "http://192.168.11.199:9874/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha1-cU8fjZ3eS9+lV2S6N+8hRjDYDvI=
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"

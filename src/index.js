@@ -36,10 +36,15 @@
 //     descriptor.writable = false//不可更改
 // }
 // let p = new Person()
+//
+// let xhr = new XMLHttpRequest();
+// xhr.open('get','/api/user',true)
+// xhr.onreadystatechange = function () {
+//     console.log(xhr.response)
+// }
+// xhr.send()
 
-let xhr = new XMLHttpRequest();
-xhr.open('get','/api/user',true)
-xhr.onreadystatechange = function () {
-    console.log(xhr.response)
-}
-xhr.send()
+import sum from   './sum.js'
+
+import $ from 'jquery'
+console.log($('#xxx'))
