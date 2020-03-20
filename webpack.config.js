@@ -17,6 +17,7 @@ const htmlPlugin = ['index', 'other'].map(chunksName => {
     })
 })
 module.exports = {
+    devtool: 'cheap-module-eval-source-map',
     // //告诉webpack,$是外部变量,不需要打包
     // externals:{
     //   'jquery':'$'//$外部变量,不需要打包
@@ -76,11 +77,11 @@ module.exports = {
             //     use:'style-loader',
             //     enforce: "post",//pre  优先加载, post  最后加载
             // }
-            {
-              test:/\.js$/,
-                use:'eslint-loader',
-                enforce: "pre"//最先解析
-            },
+            // {
+            //   test:/\.js$/,
+            //     use:'eslint-loader',
+            //     enforce: "pre"//最先解析
+            // },
             {
                 test:require.resolve('jquery'),
                 use:{

@@ -49,3 +49,5 @@ import sum from   './sum.js'
 import $ from 'jquery'
 //使用expose-loader,虽然暴露在全局,但是也要引用一下
 console.log($,'----',window.$)
+
+conso.log()
