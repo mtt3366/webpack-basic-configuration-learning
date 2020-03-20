@@ -36,4 +36,3 @@ function readonly(target,name,descriptor) {
     descriptor.writable = false//不可更改
 }
 let p = new Person()
-p.first = 100
