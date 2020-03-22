@@ -96,30 +96,49 @@ module.exports = (env)=>{
                     test:/\.less$/,
                     use:['style-loader','css-loader','less-loader'],
                 },
+                {
+                    test: /\.(gif|png|jpe?g|svg)$/i,
+                    use: [
+                        'file-loader',
+                        {
+                            loader: 'image-webpack-loader',
+                            options: {
+                                mozjpeg: {
+                                    progressive: true,
+                                    quality: 65//图片品质
+                                },
+                                // optipng.enabled: false will disable optipng
+                                optipng: {
+                                    enabled: false,
+                                },
+                                pngquant: {
+                                    quality: [0.65, 0.90],
+                                    speed: 4//速度
+                                },
+                                gifsicle: {
+                                    interlaced: false,
+                                },
+                                // the webp option will enable WEBP
+                                webp: {
+                                    quality: 75
+                                }
+                            }
+                        },
+                    ],
+                },
                 // {
                 //     test:/\.(jpg|png|jpeg|gif)$/,
                 //     use:[
                 //         {
-                //             loader: 'file-loader',
+                //             loader: 'url-loader',
                 //             options: {
-                //                 name:'img/[name].[ext]'
+                //                 limit:100*1024,//如果小于100KB,就用url-loader转化为base64直接放在html里输出,如果大于100kb,就用file-loader转化为文件输出
+                //                 outputPath:'img',//如果大于限制,放在这个文件夹里
+                //                 publicPath:'http://www.mtt.com'//如果大于限制,就从远程服务器上获取(比如CDN)
                 //             }
                 //         }
-                //         ]
-                // }
-                {
-                    test:/\.(jpg|png|jpeg|gif)$/,
-                    use:[
-                        {
-                            loader: 'url-loader',
-                            options: {
-                                limit:100*1024,//如果小于100KB,就用url-loader转化为base64直接放在html里输出,如果大于100kb,就用file-loader转化为文件输出
-                                outputPath:'img',//如果大于限制,放在这个文件夹里
-                                publicPath:'http://www.mtt.com'//如果大于限制,就从远程服务器上获取(比如CDN)
-                            }
-                        }
-                    ]
-                },
+                //     ]
+                // },
                 {
                     test:/\.(eot|svg|ttf|woff|woff2)$/,
                     use:[
