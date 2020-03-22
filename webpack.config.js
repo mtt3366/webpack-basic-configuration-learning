@@ -55,7 +55,13 @@ module.exports = {
     //     filename: "bundle.js",
     //     path: path.resolve(__dirname,'dist')//打包出来的文件目录地址,需要是绝对路径,__dirname是项目所在的目录
     // },
-
+    resolve: {
+        extensions: ['.js','.json','.jsx','.css','.ts','.vue'],
+        alias: {
+            '@':path.resolve(__dirname,'src'),
+            'test':path.resolve(__dirname,'src/test1/test2')
+        }
+    },
     entry: {
         index: './src/index.js',
         other: './src/other.js'

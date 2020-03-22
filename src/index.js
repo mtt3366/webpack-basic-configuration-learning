@@ -2,6 +2,10 @@ import $ from 'jquery'
 import _ from 'loadsh'
 console.log($,_)
 console.log(2)
+import v from './xxx'
+console.log(v)
+import testxxx from 'test/testxxx.js'
+console.log(testxxx(1,3))
 // // import plus from './test.js'
 // // import './index.css'
 // // import sum from './sum'
