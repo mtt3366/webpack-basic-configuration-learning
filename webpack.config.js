@@ -7,11 +7,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const AddAssetHtmlCdnWebpackPlugin = require('add-asset-html-cdn-webpack-plugin')
-
+const {BundleAnalyzerPlugin}  = require('webpack-bundle-analyzer')
 const webpack = require('webpack')
 const htmlPlugin = ['index', 'other'].map(chunksName => {
     return new HtmlWebPackPlugin({
-        template: path.resolve(__dirname, `${chunksName}.html`),
+        template: path.resolve(__dirname, `./src/${chunksName}.html`),
         filename: `${chunksName}.html`,
         chunks: [chunksName]
     })
@@ -27,6 +27,27 @@ module.exports = {
             new OptimizeCssAssetsWebpackPlugin(),//一旦设置optimization,js就不会自动压缩了,需要借助插件来压缩js,(生产环境下)
             new TerserJSPlugin()
         ],
+        splitChunks: {
+            chunks: 'all',//表示第三方模块是同步还是异步引入进来的,async异步, all所有,既有同步也有异步
+            minSize: 30000,//第三方模块的大小至少30Kb我才进行抽离,
+            maxSize: 0,
+            minChunks: 1,//至少粥里第三方库一个
+            maxAsyncRequests: 5,//引入这个模块,异步请求的数量不超过五次
+            maxInitialRequests: 3,//首拼加载请求次数最大不超过三次
+            automaticNameDelimiter: '~',//文件之恋的连接符
+            name: true,//是否可以更改文件名字
+            cacheGroups: {//缓存组,可以设置一些规则
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10//优先级,谁大,就用那种规则
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -2,//优先级,谁大,就用那种规则
+                    reuseExistingChunk: true
+                }
+            }
+        }
     },
     //单入口,单出口打包
     // entry: './src/index.js',
@@ -34,6 +55,7 @@ module.exports = {
     //     filename: "bundle.js",
     //     path: path.resolve(__dirname,'dist')//打包出来的文件目录地址,需要是绝对路径,__dirname是项目所在的目录
     // },
+
     entry: {
         index: './src/index.js',
         other: './src/other.js'
@@ -150,13 +172,14 @@ module.exports = {
         ]
     },
     plugins: [
+        new BundleAnalyzerPlugin(),
         new webpack.HotModuleReplacementPlugin(),
 
-        new webpack.ProvidePlugin({
-            $$: 'jquery',//$符号来自于jquery模块,每个模块都注入变量$,但不是注入在全局下
-            jQuery: 'jquery',
-            _map:['lodash','map']
-        }),
+        // new webpack.ProvidePlugin({
+        //     $$: 'jquery',//$符号来自于jquery模块,每个模块都注入变量$,但不是注入在全局下
+        //     jQuery: 'jquery',
+        //     _map:['lodash','map']
+        // }),
         new MiniCssExtractPlugin({
             filename:'css/main.css'
         }),
