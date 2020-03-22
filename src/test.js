@@ -4,5 +4,4 @@ const x =  (a,b)=>{
 const x1 =  (a,b)=>{
     return a-b
 }
-console.log('xxxx')
-export default x1
+export default x

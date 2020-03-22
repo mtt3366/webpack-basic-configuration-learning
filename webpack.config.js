@@ -149,6 +149,8 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+
         new webpack.ProvidePlugin({
             $$: 'jquery',//$符号来自于jquery模块,每个模块都注入变量$,但不是注入在全局下
             jQuery: 'jquery',
