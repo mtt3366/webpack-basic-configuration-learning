@@ -47,6 +47,7 @@
   "dependencies": {
     "@babel/runtime": "^7.8.7",
     "core-js": "3",
+    "happypack": "^5.0.1",
     "jquery": "^3.4.1",
     "loadsh": "^0.0.4",
     "webpack-bundle-analyzer": "^3.6.1"

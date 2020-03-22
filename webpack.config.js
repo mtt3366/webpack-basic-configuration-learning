@@ -8,6 +8,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const TerserJSPlugin = require('terser-webpack-plugin')
 const AddAssetHtmlCdnWebpackPlugin = require('add-asset-html-cdn-webpack-plugin')
 const {BundleAnalyzerPlugin}  = require('webpack-bundle-analyzer')
+const HappyPack = require('happypack');
 const webpack = require('webpack')
 const htmlPlugin = ['index', 'other'].map(chunksName => {
     return new HtmlWebPackPlugin({
@@ -178,6 +179,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new HappyPack({
+            id: 'styles',
+            threads: 2,
+            loaders: [ 'style-loader', 'css-loader', 'less-loader' ]
+        }),
         new BundleAnalyzerPlugin(),
         new webpack.HotModuleReplacementPlugin(),
 
